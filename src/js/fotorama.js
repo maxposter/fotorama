@@ -426,7 +426,7 @@ jQuery.Fotorama = function ($fotorama, opts) {
   function loadImg (indexes, type, specialMeasures, method, position, again) {
     eachIndex(indexes, type, function (i, index, dataFrame, $frame, key, frameData) {
 
-      if (!$frame) return;
+      if (!$frame || !data) return;
 
       var fullFLAG = that.fullScreen && dataFrame.full && dataFrame.full !== dataFrame.img && !frameData.$full && type === 'stage';
 
@@ -515,6 +515,10 @@ jQuery.Fotorama = function ($fotorama, opts) {
               .trigger('f:load')
               .removeClass(loadingClass + ' ' + errorClass)
               .addClass(loadedClass + ' ' + (fullFLAG ? loadedFullClass : loadedImgClass));
+
+          if (!data) {
+            return;
+          }
 
           if (type === 'stage') {
             triggerTriggerEvent('load');
@@ -673,7 +677,7 @@ jQuery.Fotorama = function ($fotorama, opts) {
   }
 
   function thumbsDraw (pos, loadFLAG) {
-    if (o_nav !== 'thumbs' || isNaN(pos)) return;
+    if (o_nav !== 'thumbs' || isNaN(pos) || !data) return;
 
     var leftLimit = -pos,
         rightLimit = -pos + measures.nw;
