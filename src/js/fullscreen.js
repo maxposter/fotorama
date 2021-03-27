@@ -43,6 +43,6 @@ if (fullScreenApi.ok) {
     return (this.prefix === '') ? el.requestFullScreen() : el[this.prefix + 'RequestFullScreen']();
   };
   fullScreenApi.cancel = function (el) {
-    return (this.prefix === '') ? document.cancelFullScreen() : document[this.prefix + 'CancelFullScreen']();
+    return (this.prefix === '') ? document.cancelFullScreen().catch(function() {}) : document[this.prefix + 'CancelFullScreen']();
   };
 }

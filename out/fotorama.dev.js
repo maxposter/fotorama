@@ -1,7 +1,7 @@
 /*!
- * Fotorama 4.6.5 | http://fotorama.io/license/
+ * Fotorama 4.6.6 | http://fotorama.io/license/
  */
-fotoramaVersion = '4.6.5';
+fotoramaVersion = '4.6.6';
 (function (window, document, location, $, undefined) {
   "use strict";
 var _fotoramaClass = 'fotorama',
@@ -410,9 +410,10 @@ if (fullScreenApi.ok) {
     return (this.prefix === '') ? el.requestFullScreen() : el[this.prefix + 'RequestFullScreen']();
   };
   fullScreenApi.cancel = function (el) {
-    return (this.prefix === '') ? document.cancelFullScreen() : document[this.prefix + 'CancelFullScreen']();
+    return (this.prefix === '') ? document.cancelFullScreen().catch(function() {}) : document[this.prefix + 'CancelFullScreen']();
   };
 }
+
 //fgnass.github.com/spin.js#v1.3.2
 
 /**
